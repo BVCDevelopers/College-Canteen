@@ -1,6 +1,5 @@
 const express = require('express');
 const router = express.Router();
-
 const csrf = require('csurf');
 const csrfProtection = csrf();
 
@@ -11,7 +10,12 @@ router.get('/', (req, res, next) => {
 });
 
 router.get('/shopSignUp', (req, res, next) => {
-    res.render('shop/shopSignUp', { csrfToken: req.csrfToken() });
+    const errorMessage = req.flash('error');
+    res.render('shop/shopSignUp', {
+        csrfToken: req.csrfToken(),
+        errorMessage: errorMessage,
+        hasErrors: errorMessage.length > 0
+    });
 });
 
 module.exports = router;

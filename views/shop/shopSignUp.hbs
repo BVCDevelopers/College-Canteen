@@ -1,4 +1,10 @@
-<!-- Validation Error -->
+{{#if hasErrors}}
+<h1>
+    {{#each errorMessage}}
+        <i>{{this}}</i>
+    {{/each}}
+</h1>
+{{/if}}
 <form action="/shop/signup" method = "post">
     Shop Name : <input type="text" name = "shopName">
     Password : <input type="password" name = "password">
