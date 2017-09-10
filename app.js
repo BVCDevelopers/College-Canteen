@@ -5,8 +5,12 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressHandlebars = require('express-handlebars');
+const expSession = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
 
-const index = require('./routes/index');
+const dashboard = require('./routes/dashboard');
 const shop = require('./routes/shop');
 
 const app = express();
@@ -18,17 +22,21 @@ mongoose.connect("mongodb://localhost/canteen", (error) => {
 mongoose.Promise = global.Promise;
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.engine('.hbs', expressHandlebars({ defaultLayout: 'layout', extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(expSession({ secret: 'ilovesprogramminginnode', resave: false, saveUninitialized: false }));
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
+app.use('/', dashboard);
 app.use('/shop', shop);
 
 // catch 404 and forward to error handler
