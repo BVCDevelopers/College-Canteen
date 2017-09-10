@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 
-const canteenModel = require('../models/canteenModel');
-
-router.get('/:shop', (req, res, next) => {
+router.post('/signup', (req, res, next) => {
+    res.redirect("/");
 });
 
 module.exports = router;
