@@ -5,6 +5,7 @@ const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const expressHandlebars = require('express-handlebars');
 
 const index = require('./routes/index');
 const shop = require('./routes/shop');
@@ -18,8 +19,8 @@ mongoose.connect("mongodb://localhost/canteen", (error) => {
 mongoose.Promise = global.Promise;
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
+app.engine('.hbs', expressHandlebars({ defaultLayout: 'layout', extname: '.hbs' }));
+app.set('view engine', '.hbs');
 
 // uncomment after placing your favicon in /public
 app.use(logger('dev'));
