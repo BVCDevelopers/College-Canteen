@@ -21,6 +21,7 @@ mongoose.connect("mongodb://localhost/canteen", (error) => {
 });
 mongoose.Promise = global.Promise;
 
+require('./config/passport');
 // view engine setup
 app.engine('.hbs', expressHandlebars({ defaultLayout: 'layout', extname: '.hbs' }));
 app.set('view engine', '.hbs');
