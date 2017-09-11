@@ -4,7 +4,13 @@ const passport = require('passport');
 
 router.post('/signup', passport.authenticate('local.signup', {
     successRedirect: "/shop/shopMenu",
-    failureRedirect: "/",
+    failureRedirect: "/shopSignUp",
+    failureFlash: true
+}));
+
+router.post('/signin', passport.authenticate('local.signin', {
+    successRedirect: "/shop/shopMenu",
+    failureRedirect: "/shopSignIn",
     failureFlash: true
 }));
 

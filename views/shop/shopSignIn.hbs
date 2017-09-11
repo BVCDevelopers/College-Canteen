@@ -5,7 +5,7 @@
     {{/each}}
 </h1>
 {{/if}}
-<form action="/shop/signup" method = "post">
+<form action="/shop/signin" method = "post">
     Shop Name : <input type="text" name = "shopName">
     Password : <input type="password" name = "password">
     <input type="hidden" name = "_csrf" value = "{{csrfToken}}">

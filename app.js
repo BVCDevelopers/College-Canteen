@@ -9,6 +9,7 @@ const expressHandlebars = require('express-handlebars');
 const expSession = require('express-session');
 const flash = require('connect-flash');
 const passport = require('passport');
+const expressValidator = require('express-validator');
 
 const dashboard = require('./routes/dashboard');
 const shop = require('./routes/shop');
@@ -30,6 +31,7 @@ app.set('view engine', '.hbs');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(expressValidator());
 app.use(cookieParser());
 app.use(expSession({ secret: 'ilovesprogramminginnode', resave: false, saveUninitialized: false }));
 app.use(passport.initialize());
