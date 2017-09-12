@@ -11,10 +11,17 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const expressValidator = require('express-validator');
 
+const app = express();
+
+// Making global variable that is accessible in all places ...
+app.use((req, res, next) => {
+    res.locals.loggedIn = req.isAuthenticated();
+    next();  // Continue with other request ... 
+});
+
 const dashboard = require('./routes/dashboard');
 const shop = require('./routes/shop');
 
-const app = express();
 
 // mongodb ...
 mongoose.connect("mongodb://localhost/canteen", (error) => {
@@ -39,8 +46,8 @@ app.use(passport.session());
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', dashboard);
 app.use('/shop', shop);
+app.use('/', dashboard);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

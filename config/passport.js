@@ -75,7 +75,7 @@ passport.use('local.signin', new LocalStrategy({
         } if (!details) {
             return done(null, false, { message: "No Shop Name Found." });
         } if (!details.validPassword(password)) {
-            return done(null, false, { message: "You have got your password wrong." });
+            return done(null, false, { message: "You have got your username or password wrong." });
         }
         return done(null, details);
     });
