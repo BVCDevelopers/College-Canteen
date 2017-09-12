@@ -22,7 +22,6 @@ app.use((req, res, next) => {
 const dashboard = require('./routes/dashboard');
 const shop = require('./routes/shop');
 
-
 // mongodb ...
 mongoose.connect("mongodb://localhost/canteen", (error) => {
     if (error) console.log(error);
