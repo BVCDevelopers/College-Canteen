@@ -1,0 +1,20 @@
+<form action="/shopOperation/addItems" method = "post">
+    Shop Name :
+    <select name="shopName">
+        {{#each shop}}
+            <option value="{{this.shopName}}">{{this.shopName}}</option>
+        {{/each}}
+     </select>
+     <br>
+    Item Name : <input type="text" name = "itemName"><br>
+    Price: <input type="number" name = "price"><br>
+    Quantity : <input type="number" name = "quantity"><br>
+    Category: <select name="category" >
+        <option value="A">A</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="D">D</option>
+    </select>
+    <br>
+    <button type="submit">Add Item</button>
+</form>

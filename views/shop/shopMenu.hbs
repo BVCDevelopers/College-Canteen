@@ -1,10 +1,29 @@
-Hello shopmenu
+<h3>Shop Menu</h3> 
+<br>
+{{# if result}}
+<h3>
+    {{result.regdNo}}<br>
+    {{result.name}} <br>
+    {{result.password}}
+    <br>
+</h3>
+<h1>Entered</h1>
+{{/if}}
 
+{{details.shopName}} <br>
+{{details.itemName}} <br>
+{{details.price}} <br>
+{{details.quantity}} <br>
+{{details.category}} <br>
+<br>
 
-
-
-
-
+<form action="/shopOperation/addStudent" method = "post">
+    <button type="submit">Add student</button> 
+</form>
+<br><br>
+<form action="/shopOperation/add" method = "post">
+    <button type="submit">Add Items</button>
+</form>
 <br><br>
 
 <a href="/shop/logout">Log out</a>
