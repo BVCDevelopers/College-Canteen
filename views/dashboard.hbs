@@ -1,5 +1,17 @@
+{{result.name}}
+<br>
 <!-- Comment out later for security / or completely remove ...-->
 <a href="/shopSignUp">Shop Sign Up</a><br>    
 <!-- Comment out later -->
 <a href="/shopSignIn">Shop Sign In</a><br>
 <a href="/studentLogin">Student Login</a><br>
+
+<br><br><br>
+<h2>Canteen Items available</h2>
+{{# each items}}
+    <b>Shop name :</b>{{this.shopName}} <br>
+    <b> Item name :</b>{{this.itemName}} <br> 
+    <b>Item price :</b>{{this.price}} <br>
+    <b>Item quantity :</b>{{this.quantity}} <br>
+    <b>Item category :</b>{{this.category}} <br> <hr><br>
+{{/each}}

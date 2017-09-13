@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 
 const dashboard = require('./routes/dashboard');
 const shop = require('./routes/shop');
+const shopOperation = require('./routes/shopOperation');
 
 // mongodb ...
 mongoose.connect("mongodb://localhost/canteen", (error) => {
@@ -45,6 +46,7 @@ app.use(passport.session());
 app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use('/shopOperation', shopOperation);
 app.use('/shop', shop);
 app.use('/', dashboard);
 
