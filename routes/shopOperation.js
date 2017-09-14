@@ -24,7 +24,6 @@ router.post('/addStudentDetails', (req, res, next) => {
 router.post('/add', (req, res, next) => {
     shopUserModel.find({})
         .then((shops) => {
-            console.log(shops);
             res.render('shopOperation/addItems', { shop: shops });
         });
 });
@@ -53,7 +52,19 @@ router.post('/viewStudents', (req, res, next) => {
 router.post('/displayAll', (req, res, next) => {
     storeItemModel.find({})
         .then((results) => {
-            res.render('shopOperation/displayAllItems', { results: results.reverse() });
+            shopUserModel.find({})
+                .then((shopItems) => {
+                    res.render('shopOperation/displayAllItems', { results: results.reverse(), shopItems: shopItems });
+                });
+        });
+});
+
+router.post('/items/:shopName', (req, res, next) => {
+    const shopName = req.params.shopName;
+    storeItemModel.find({ 'shopName': shopName })
+        .then((items) => {
+            console.log(items);
+            res.render('shopOperation/displayShopItems', { items: items.reverse() });
         });
 });
 
