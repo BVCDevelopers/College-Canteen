@@ -1,3 +1,9 @@
+{{# each shopItems}}
+    <form action="/shopOperation/items/{{this.shopName}}" method="post">
+        <button type="submit">{{this.shopName}}</button>
+    </form><br>
+{{/each}}
+
 {{# each results}}
     <b>Shop Name</b>{{this.shopName}} 
     <b>Item Name</b>{{this.itemName}}
