@@ -17,7 +17,10 @@ router.post('/studentLogin', (req, res, next) => {
     studentUserModel.findOne({ regdNo: regdNoIn, password: passwordIn })
         .then((results) => {
             if (results) {
-                res.render('dashboard', { result: results });
+                storeItemModel.find({})
+                    .then((storeItems) => {
+                        res.render('dashboard', { results: results, items: storeItems.reverse() });
+                    });
             } else {
                 res.render('student/studentLogin', { result: "Your username or you password is wrong. Please try again." });
             }

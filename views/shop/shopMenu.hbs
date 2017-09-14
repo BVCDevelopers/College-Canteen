@@ -10,6 +10,8 @@
 <h1>Entered</h1>
 {{/if}}
 
+
+<!--  SHop operation - post /additems -->
 {{details.shopName}} <br>
 {{details.itemName}} <br>
 {{details.price}} <br>
@@ -24,6 +26,13 @@
 <form action="/shopOperation/add" method = "post">
     <button type="submit">Add Items</button>
 </form>
+<form action="/shopOperation/displayAll" method="post">
+    Shop Name :
+    <button type="submit">Display All Items</button>
+</form>
 <br><br>
-
+<form action="/shopOperation/viewStudents" method="post">
+    <button type="submit">View All Students Accounts</button>
+</form>
+<br><br>
 <a href="/shop/logout">Log out</a>

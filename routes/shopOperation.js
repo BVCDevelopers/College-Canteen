@@ -43,4 +43,18 @@ router.post('/addItems', (req, res, next) => {
         });
 });
 
+router.post('/viewStudents', (req, res, next) => {
+    studentUserModel.find({})
+        .then((results) => {
+            res.render('shop/shopStudentsAccount', { results: results });
+        });
+});
+
+router.post('/displayAll', (req, res, next) => {
+    storeItemModel.find({})
+        .then((results) => {
+            res.render('shopOperation/displayAllItems', { results: results.reverse() });
+        });
+});
+
 module.exports = router;
