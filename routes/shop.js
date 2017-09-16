@@ -2,6 +2,9 @@ const express = require('express');
 const router = express.Router();
 const passport = require('passport');
 
+const shopUserModel = require('../models/shopUserModel');
+const storeItemModel = require('../models/storeItemModel');
+
 // yo method ko bichha ko le route lai protect mattra garrxa ... 
 // Method ko reference yeta xa .. ie do not execute here ...
 router.get('/shopMenu', isLoggedIn, (req, res, next) => {
@@ -24,6 +27,18 @@ router.get('/logout', (req, res, next) => {
     // passport provides logout function ...
     req.logOut();
     res.redirect('/');
+});
+
+// For displaying items that are available in a paticular shop ...
+router.get('/shopItems/:shopName', (req, res, next) => {
+    const shopName = req.params.shopName;
+    storeItemModel.find({ 'shopName': shopName })
+        .then((results) => {
+            shopUserModel.find({})
+                .then((shopList) => {
+                    res.render('dashboard', { shopItems: results, shopUsers: shopList });
+                });
+        });
 });
 
 module.exports = router;
