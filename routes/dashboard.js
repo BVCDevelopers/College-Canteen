@@ -3,6 +3,7 @@ const router = express.Router();
 const csrf = require('csurf');
 const csrfProtection = csrf();
 
+const shopUserModel = require('../models/shopUserModel');
 const studentUserModel = require('../models/studentUserModel');
 const storeItemModel = require('../models/storeItemModel');
 
@@ -17,9 +18,16 @@ router.post('/studentLogin', (req, res, next) => {
     studentUserModel.findOne({ regdNo: regdNoIn, password: passwordIn })
         .then((results) => {
             if (results) {
-                storeItemModel.find({})
+                storeItemModel.find({}).limit(16)
                     .then((storeItems) => {
-                        res.render('dashboard', { results: results, items: storeItems.reverse() });
+                        shopUserModel.find({})
+                            .then((shopUsers) => {
+                                res.render('dashboard', {
+                                    results: results,
+                                    items: storeItems.reverse(),
+                                    shopUsers: shopUsers
+                                });
+                            })
                     });
             } else {
                 res.render('student/studentLogin', { result: "Your username or you password is wrong. Please try again." });
@@ -31,10 +39,12 @@ router.post('/studentLogin', (req, res, next) => {
 router.use(csrfProtection);
 /* GET home page. */
 router.get('/', (req, res, next) => {
-    storeItemModel.find({})
+    storeItemModel.find({}).limit(16)
         .then((results) => {
-            // reverse here because we need the recent first ... 
-            res.render('dashboard', { items: results.reverse() });
+            shopUserModel.find({})
+                .then((shopList) => {
+                    res.render('dashboard', { items: results.reverse(), shopUsers: shopList });
+                })
         });
 });
 

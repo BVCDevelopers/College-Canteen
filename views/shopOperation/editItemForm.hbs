@@ -1,0 +1,8 @@
+<form action="/shopOperation/editItems/{{results.id}}" method="post">
+    Shopname: <input type="text" name = "shopName" value = "{{results.shopName}}" disabled>  <br>
+    Itemname: <input type="text" name = "itemName" value="{{results.itemName}}"><br>
+    Price: <input type="text" name = "price" value="{{results.price}}"><br>
+    Quantity: <input type="text" name = "quantity" value="{{results.quantity}}"><br>
+    Category: <input type="text" name = "category" value="{{results.category}}"><br>
+    <button type="submit">Update</button>
+</form>

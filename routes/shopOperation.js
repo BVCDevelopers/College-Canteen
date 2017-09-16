@@ -67,4 +67,40 @@ router.post('/items/:shopName', (req, res, next) => {
         });
 });
 
+router.post('/delete/:id', (req, res, next) => {
+    const id = req.params.id;
+    storeItemModel.findByIdAndRemove({ '_id': id })
+        .then((results) => {
+            storeItemModel.find({ 'shopName': results.shopName })
+                .then((itemList) => {
+                    res.render('shopOperation/displayShopItems', { items: itemList.reverse(), results: results });
+                });
+        });
+});
+
+router.post('/edit/:id', (req, res, next) => {
+    const id = req.params.id;
+    storeItemModel.findOne({ '_id': id })
+        .then((results) => {
+            res.render('shopOperation/editItemForm', { results: results });
+        });
+});
+
+router.post('/editItems/:id', (req, res, next) => {
+    const id = req.params.id;
+    const newData = {
+        itemName: req.body.itemName,
+        price: req.body.price,
+        quantity: req.body.quantity,
+        category: req.body.category
+    };
+    storeItemModel.findByIdAndUpdate({ '_id': id }, newData)
+        .then((results) => {
+            storeItemModel.find({ shopName: results.shopName })
+                .then((dataBack) => {
+                    res.render('shopOperation/displayShopItems', { items: dataBack.reverse() });
+                });
+        });
+});
+
 module.exports = router;
