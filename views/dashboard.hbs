@@ -1,17 +1,41 @@
-<b>{{results.name}}</b> {{results.regdNo}}
-<br><br>
 <!-- Comment out later for security / or completely remove ...-->
-<a href="/shopSignUp">Shop Sign Up</a><br>    
+<!-- <a href="/shopSignUp">Shop Sign Up</a><br>     -->
 <!-- Comment out later -->
-<a href="/shopSignIn">Shop Sign In</a><br>
-<a href="/studentLogin">Student Login</a><br>
 
-<br><br><br>
-<h2>Canteen Items available</h2>
-{{# each items}}
-    <b>Shop name :</b>{{this.shopName}} <br>
-    <b> Item name :</b>{{this.itemName}} <br> 
-    <b>Item price :</b>{{this.price}} <br>
-    <b>Item quantity :</b>{{this.quantity}} <br>
-    <b>Item category :</b>{{this.category}} <br> <hr><br>
-{{/each}}
+<a href="/shopSignIn" class="btn btn-info">Shop Sign In</a>
+<a href="/studentLogin" class="btn btn-warning pull-right">Student Login</a>
+<br>
+<br>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <b class="navbar-brand">Current Items Available</b>
+        </div>
+        {{#if results}}
+        <b class="navbar-brand pull-right">{{results.name}} : {{results.regdNo}}</b>
+        {{/if}}
+    </div>
+
+</nav>
+
+<div class="row">
+    {{# each items}}        
+    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
+        <div class="thumbnail">
+            <img src="..." alt="Image here !!">
+            <div class="caption">
+                <h4>{{this.itemName}}</h4>   
+                <hr>
+                <p><b>Shop: </b>{{this.shopName}}</p>
+                <b>Price: </b>{{this.price}}
+                <p class = "pull-right"><b>Quantity left: </b>{{this.quantity}}</p> 
+                <br><br>
+                <a href="#" class="btn btn-primary" role="button">Book Now</a>
+                <a href="#" class="btn btn-default pull-right" role="button">Deliever to room</a>
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

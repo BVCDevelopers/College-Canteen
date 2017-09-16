@@ -13,6 +13,8 @@ const expressValidator = require('express-validator');
 
 const app = express();
 
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist/'));
+
 // Making global variable that is accessible in all places ...
 app.use((req, res, next) => {
     res.locals.loggedIn = req.isAuthenticated();

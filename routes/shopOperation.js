@@ -63,7 +63,6 @@ router.post('/items/:shopName', (req, res, next) => {
     const shopName = req.params.shopName;
     storeItemModel.find({ 'shopName': shopName })
         .then((items) => {
-            console.log(items);
             res.render('shopOperation/displayShopItems', { items: items.reverse() });
         });
 });
