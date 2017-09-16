@@ -1,5 +1,5 @@
 <!-- Comment out later for security / or completely remove ...-->
-<!-- <a href="/shopSignUp">Shop Sign Up</a><br>     -->
+<a href="/shopSignUp" class="btn btn-danger">Shop Sign Up</a>
 <!-- Comment out later -->
 
 <a href="/shopSignIn" class="btn btn-info">Shop Sign In</a>
@@ -14,23 +14,22 @@
             <b class="navbar-brand">Current Items Available</b>
         </div>
         {{#if results}}
-        <b class="navbar-brand pull-right">{{results.name}} : {{results.regdNo}}</b>
-        {{/if}}
+        <b class="navbar-brand pull-right">{{results.name}} : {{results.regdNo}}</b> {{/if}}
     </div>
 
 </nav>
 
 <div class="row">
-    {{# each items}}        
+    {{# each items}}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="thumbnail">
             <img src="..." alt="Image here !!">
             <div class="caption">
-                <h4>{{this.itemName}}</h4>   
+                <h4>{{this.itemName}}</h4>
                 <hr>
                 <p><b>Shop: </b>{{this.shopName}}</p>
                 <b>Price: </b>{{this.price}}
-                <p class = "pull-right"><b>Quantity left: </b>{{this.quantity}}</p> 
+                <p class="pull-right"><b>Quantity left: </b>{{this.quantity}}</p>
                 <br><br>
                 <a href="#" class="btn btn-primary" role="button">Book Now</a>
                 <a href="#" class="btn btn-default pull-right" role="button">Deliever to room</a>
