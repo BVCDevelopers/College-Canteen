@@ -4,5 +4,12 @@
     <b>Price : </b>{{this.price}}
     <b>Quantity : </b>{{this.quantity}}
     <b>Category : </b>{{this.category}}
+    <form action="/shopOperation/delete/{{this.id}}" method="post">
+        <button type ="submit">Delete</button>
+    </form>
     <hr>
 {{/each}}
+
+{{#if results}}
+    {{results.shopName}} deleted {{results.itemName}}
+{{/if}}

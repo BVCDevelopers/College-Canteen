@@ -67,4 +67,15 @@ router.post('/items/:shopName', (req, res, next) => {
         });
 });
 
+router.post('/delete/:id', (req, res, next) => {
+    const id = req.params.id;
+    storeItemModel.findByIdAndRemove({ '_id': id })
+        .then((results) => {
+            storeItemModel.find({ 'shopName': results.shopName })
+                .then((itemList) => {
+                    res.render('shopOperation/displayShopItems', { items: itemList.reverse(), results: results });
+                });
+        });
+});
+
 module.exports = router;
