@@ -1,10 +1,30 @@
-<h3>Shop Menu</h3> 
-<br>
-{{# if result}}
+<bold>
+    <h2>Shop Menu</h2>
+</bold>
+<div class="jumbotron">
+    <center>
+        <form action="/shopOperation/addStudent" method="post">
+            <button id="dense" type="submit" class="btn btn-primary">Add student</button>
+        </form>
+        <br>
+        <form action="/shopOperation/add" method="post">
+            <button id="dense" type="submit" class="btn btn-primary">Add Items</button>
+        </form>
+        <br>
+        <form action="/shopOperation/displayAll" method="post">
+            <button id="dense" type="submit" class="btn btn-primary">Display All Items</button>
+        </form>
+        <br>
+        <form action="/shopOperation/viewStudents" method="post">
+            <button id="dense" type="submit" class="btn btn-primary">View All Students Accounts</button>
+        </form>
+        <br>
+        <a id="dense" class="btn btn-primary" href="/shop/logout">Log out</a>
+    </center>
+</div>
+<br> {{# if result}}
 <h3>
-    {{result.regdNo}}<br>
-    {{result.name}} <br>
-    {{result.password}}
+    {{result.regdNo}}<br> {{result.name}} <br> {{result.password}}
     <br>
 </h3>
 <h1>Entered</h1>
@@ -12,26 +32,5 @@
 
 
 <!--  SHop operation - post /additems -->
-{{details.shopName}} <br>
-{{details.itemName}} <br>
-{{details.price}} <br>
-{{details.quantity}} <br>
-{{details.category}} <br>
+{{details.shopName}} <br> {{details.itemName}} <br> {{details.price}} <br> {{details.quantity}} <br> {{details.category}} <br>
 <br>
-
-<form action="/shopOperation/addStudent" method = "post">
-    <button type="submit">Add student</button> 
-</form>
-<br><br>
-<form action="/shopOperation/add" method = "post">
-    <button type="submit">Add Items</button>
-</form>
-<form action="/shopOperation/displayAll" method="post">
-    <button type="submit">Display All Items</button>
-</form>
-<br><br>
-<form action="/shopOperation/viewStudents" method="post">
-    <button type="submit">View All Students Accounts</button>
-</form>
-<br><br>
-<a href="/shop/logout">Log out</a>
