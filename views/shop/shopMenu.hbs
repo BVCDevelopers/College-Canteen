@@ -19,7 +19,11 @@
             <button id="dense" type="submit" class="btn btn-primary">View All Students Accounts</button>
         </form>
         <br>
-        <a id="dense" class="btn btn-primary" href="/shop/logout">Log out</a>
+        <form action="/shopOperation/viewBookedItems" method="post">
+            <button id = "dense" type="submit" class="btn btn-primary">View Booked Items By Students</button>
+        </form>
+        <br><br><br>
+        <a id="dense" class="btn btn-danger" href="/shop/logout">Log out</a>
     </center>
 </div>
 <br> {{# if result}}

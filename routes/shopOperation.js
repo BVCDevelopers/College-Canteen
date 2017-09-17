@@ -4,6 +4,7 @@ const router = express.Router();
 const shopUserModel = require('../models/shopUserModel');
 const storeItemModel = require('../models/storeItemModel');
 const studentUserModel = require('../models/studentUserModel');
+const bookedItemModel = require('../models/bookedItemModel');
 
 router.post('/addStudent', (req, res, next) => {
     res.render('shopOperation/addStudent');
@@ -80,6 +81,7 @@ router.post('/delete/:id', (req, res, next) => {
         });
 });
 
+// Edit page routing ...
 router.post('/edit/:id', (req, res, next) => {
     const id = req.params.id;
     storeItemModel.findOne({ '_id': id })
@@ -88,6 +90,7 @@ router.post('/edit/:id', (req, res, next) => {
         });
 });
 
+// Edit items by shop user ...
 router.post('/editItems/:id', (req, res, next) => {
     const id = req.params.id;
     const newData = {
@@ -101,6 +104,54 @@ router.post('/editItems/:id', (req, res, next) => {
             storeItemModel.find({ shopName: results.shopName })
                 .then((dataBack) => {
                     res.render('shopOperation/displayShopItems', { items: dataBack.reverse() });
+                });
+        });
+});
+
+// Viewing all booked items by students ...
+router.post('/viewBookedItems', (req, res, next) => {
+    bookedItemModel.find({})
+        .then((results) => {
+            shopUserModel.find({})
+                .then((shopList) => {
+                    res.render('shop/bookedItems', { results: results, shopList: shopList });
+                });
+        });
+});
+
+// Categorized items in booked by shop basis ...
+router.get('/bookedByShop', (req, res, next) => {
+    const shopName = req.query.shopName;
+    if (shopName) {
+        bookedItemModel.find({ 'shopName': shopName })
+            .then((results) => {
+                shopUserModel.find({})
+                    .then((shopList) => {
+                        res.render('shop/bookedItems', { results: results, shopList: shopList });
+                    });
+            });
+    } else {
+        bookedItemModel.find({})
+            .then((results) => {
+                shopUserModel.find({})
+                    .then((shopList) => {
+                        res.render('shop/bookedItems', { results: results, shopList: shopList });
+                    });
+            });
+    }
+});
+
+// remove items that are booked by students (After students takes the item/s ) ...
+router.post('/removeBookedItem/:id', (req, res, next) => {
+    const id = req.params.id;
+    bookedItemModel.findByIdAndRemove({ '_id': id })
+        .then((removedItem) => {
+            bookedItemModel.find()
+                .then((results) => {
+                    shopUserModel.find({})
+                        .then((shopList) => {
+                            res.render('shop/bookedItems', { results: results, shopList: shopList });
+                        });
                 });
         });
 });
