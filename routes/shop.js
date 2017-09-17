@@ -9,6 +9,8 @@ const storeItemModel = require('../models/storeItemModel');
 // Method ko reference yeta xa .. ie do not execute here ...
 router.get('/shopMenu', isLoggedIn, (req, res, next) => {
     res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    req.session.regdNoIn = null;
+    req.session.studentName = null;
     res.render("shop/shopMenu");
 });
 
