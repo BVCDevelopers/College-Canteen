@@ -10,6 +10,7 @@ router.post('/addStudent', (req, res, next) => {
 });
 
 router.post('/addStudentDetails', (req, res, next) => {
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
     const studentDetails = {
         regdNo: req.body.regdNo,
         name: req.body.name,
@@ -29,6 +30,7 @@ router.post('/add', (req, res, next) => {
 });
 
 router.post('/addItems', (req, res, next) => {
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     const itemDetails = {
         shopName: req.body.shopName,
         itemName: req.body.itemName,

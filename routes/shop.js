@@ -8,6 +8,7 @@ const storeItemModel = require('../models/storeItemModel');
 // yo method ko bichha ko le route lai protect mattra garrxa ... 
 // Method ko reference yeta xa .. ie do not execute here ...
 router.get('/shopMenu', isLoggedIn, (req, res, next) => {
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
     res.render("shop/shopMenu");
 });
 
