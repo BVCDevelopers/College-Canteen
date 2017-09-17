@@ -16,6 +16,7 @@ router.get('/book', (req, res, next) => {
             regdNo: req.session.regdNoIn,
             studentName: req.session.studentName,
             itemName: req.query.itemName,
+            price: req.query.price,
             shopName: req.query.shopName
         };
         bookedItemModel.create(bookedItem)
