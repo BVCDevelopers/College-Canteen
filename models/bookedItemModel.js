@@ -4,6 +4,7 @@ const bookedItemSchema = new mongoose.Schema({
     regdNo: { type: String, required: true },
     studentName: { type: String, required: true },
     itemName: { type: String, required: true },
+    price: { type: Number, required: true },
     shopName: { type: String, required: true }
 });
 

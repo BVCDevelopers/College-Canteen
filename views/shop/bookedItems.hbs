@@ -1,0 +1,34 @@
+<center>
+    <div class="btn-group" role="group">
+        <a href="/shopOperation/bookedByShop" class="btn btn-default">
+            <span class="glyphicon glyphicon-cutlery"></span> All
+        </a>
+        {{#each shopList}}
+            <a href="/shopOperation/bookedByShop?shopName={{this.shopName}}" class="btn btn-default">
+                <span class="glyphicon glyphicon-cutlery"></span>
+                {{this.shopName}}
+            </a>
+        {{/each}}
+    </div>
+</center>
+<br><br>
+<div class="row">
+    {{#each results}}
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <b>{{this.itemName}}</b>
+                <form action="/shopOperation/removeBookedItem/{{this.id}}" method ="post">
+                    <button class= "btn btn-danger btn-sm pull-right">
+                        <span class = "glyphicon glyphicon-remove"></span>
+                    </button>
+                </form>
+            </div>
+            <div class="panel-footer">
+                {{this.studentName}} ({{this.regdNo}}) <br>
+                Amount: {{this.price}}
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>
