@@ -22,6 +22,8 @@ router.post('/studentLogin', (req, res, next) => {
                     .then((storeItems) => {
                         shopUserModel.find({})
                             .then((shopUsers) => {
+                                req.session.regdNoIn = regdNoIn;
+                                req.session.studentName = results.name;
                                 res.render('dashboard', {
                                     results: results,
                                     items: storeItems.reverse(),
@@ -30,7 +32,7 @@ router.post('/studentLogin', (req, res, next) => {
                             })
                     });
             } else {
-                res.render('student/studentLogin', { result: "Your username or you password is wrong. Please try again." });
+                res.render('student/studentLogin', { result: "Your username or your password is wrong. Please try again." });
             }
         });
 });

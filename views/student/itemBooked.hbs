@@ -1,0 +1,10 @@
+{{#if results}}
+<div class="alert alert-success" role="alert">
+    Thank you {{results.studentName}}, You have successfully booked <b>{{results.itemName}}</b> from <b>{{results.shopName}}</b> shop. <br>
+    Please go to the store and collect it now.
+</div>
+{{/if}}
+
+<br> <br>
+<a href="/" class = "btn btn-info btn-lg">Let's book some more things.</a>
+<a href="/studentOperation" class = "btn btn-danger btn-lg pull-right">Log out.</a>
