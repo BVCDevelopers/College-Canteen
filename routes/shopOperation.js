@@ -17,9 +17,16 @@ router.post('/addStudentDetails', (req, res, next) => {
         name: req.body.name,
         password: req.body.password,
     };
-    studentUserModel.create(studentDetails)
-        .then((results) => {
-            res.render('shop/shopMenu', { result: results });
+    studentUserModel.findOne({ 'regdNo': req.body.regdNo })
+        .then((studentData) => {
+            if (studentData) {
+                res.render('shop/shopMenu', { errorMsg: studentDetails });
+            } else {
+                studentUserModel.create(studentDetails)
+                    .then((results) => {
+                        res.render('shop/shopMenu', { result: results });
+                    });
+            }
         });
 });
 
