@@ -1,6 +1,13 @@
 <bold>
     <h2>Shop Menu</h2>
 </bold>
+{{#if errorMsg}}
+<div class="alert alert-danger">
+    The Student named :<b>{{errorMsg.name}}</b> bearing registration number : <b>{{errorMsg.regdNo}}</b> already exists in the database. <br>
+    Please try to view all students. 
+</div>
+{{/if}}
+
 <div class="jumbotron">
     <center>
         <form action="/shopOperation/addStudent" method="post">
