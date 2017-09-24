@@ -1,11 +1,9 @@
 {{#if results}}
 <div class="alert alert-success" role="alert">
-    regdno{{results.regdNo}}
-    student{{results.studentName}}
-    item {{results.itemName}}
-    price {{results.price}}
-    shop {{results.shopName}}
-    deliever to {{results.delieveryToPlace}}
+    Thank you <b>{{results.studentName}}</b>, <br>
+    <b>{{results.itemName}}</b> will be delievered to <b>{{results.delieveryToPlace}}</b> as soon as possible.
+    <br><br>
+    Your item will be delievered by <b>{{results.shopName}}</b>. Please keep <b>{{results.price}}.rs</b> ready.
 </div>
 {{/if}}
 
