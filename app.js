@@ -27,7 +27,7 @@ const shopOperation = require('./routes/shopOperation');
 const studentOperation = require('./routes/studentOperation');
 
 // mongodb ...
-mongoose.connect("mongodb://localhost/canteen", (error) => {
+mongoose.connect("mongodb://canteen:Mzekerom99@ds143892.mlab.com:43892/canteen", (error) => {
     if (error) console.log(error);
 });
 mongoose.Promise = global.Promise;
