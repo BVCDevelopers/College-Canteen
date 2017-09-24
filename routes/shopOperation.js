@@ -5,6 +5,7 @@ const shopUserModel = require('../models/shopUserModel');
 const storeItemModel = require('../models/storeItemModel');
 const studentUserModel = require('../models/studentUserModel');
 const bookedItemModel = require('../models/bookedItemModel');
+const delieverItemModel = require('../models/delieverItemModel');
 
 router.post('/addStudent', (req, res, next) => {
     res.render('shopOperation/addStudent');
@@ -161,6 +162,51 @@ router.post('/removeBookedItem/:id', (req, res, next) => {
                         });
                 });
         });
+});
+
+router.post('/viewDelieverItems', (req, res, next) => {
+    delieverItemModel.find({})
+        .then((results) => {
+            shopUserModel.find({})
+                .then((shopList) => {
+                    res.render('shop/delieverItems', { results: results, shopList: shopList });
+                });
+        });
+});
+
+router.post('/removeDelieverItem/:id', (req, res, next) => {
+    const id = req.params.id;
+    delieverItemModel.findByIdAndRemove({ _id: id })
+        .then((deletedItem) => {
+            delieverItemModel.find({})
+                .then((results) => {
+                    shopUserModel.find({})
+                        .then((shopList) => {
+                            res.render('shop/delieverItems', { results: results, shopList: shopList });
+                        });
+                });
+        });
+});
+
+router.get("/delieveryByShop", (req, res, next) => {
+    const shopName = req.query.shopName;
+    if (shopName) {
+        delieverItemModel.find({ 'shopName': shopName })
+            .then((results) => {
+                shopUserModel.find({})
+                    .then((shopList) => {
+                        res.render('shop/delieverItems', { results: results, shopList: shopList });
+                    });
+            });
+    } else {
+        delieverItemModel.find({})
+            .then((results) => {
+                shopUserModel.find({})
+                    .then((shopList) => {
+                        res.render('shop/delieverItems', { results: results, shopList: shopList });
+                    });
+            });
+    }
 });
 
 module.exports = router;

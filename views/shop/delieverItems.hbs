@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col col-sm-12 col-md-3">
+        <a href="/shop/shopMenu" class="btn btn-info"><span class = "glyphicon glyphicon-chevron-left"></span>  Go Back</a>
+    </div>
+    <center>
+        <div class="col col-sm-12 col-md-6">
+            <a href="/">
+                <h2 style="margin-top:0px">College Canteen</h2>
+            </a>
+        </div>
+    </center>
+    <div class="col col-sm-12 col-md-3">
+        <a href="/shop/logout" class = "btn btn-danger pull-right">Log out &nbsp;&nbsp;<span class="glyphicon glyphicon-share"></span></a>
+    </div>
+</div>
+<center>
+    <hr>   
+    <div class="btn-group" role="group">
+        <a href="/shopOperation/delieveryByShop" class="btn btn-default">
+            <span class="glyphicon glyphicon-cutlery"></span> All
+        </a>
+        {{#each shopList}}
+        <a href="/shopOperation/delieveryByShop?shopName={{this.shopName}}" class="btn btn-default">
+            <span class="glyphicon glyphicon-cutlery"></span>
+            {{this.shopName}}
+        </a>
+        {{/each}}
+    </div>
+</center>
+<br><br>
+<div class="row">
+    {{#each results}}
+    <div class="col-xs-6 col-sm-4 col-md-4 col-lg-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <b>{{this.itemName}}</b>
+                <form action="/shopOperation/removeDelieverItem/{{this.id}}" method ="post">
+                    <button class= "btn btn-danger btn-sm pull-right">
+                        <span class = "glyphicon glyphicon-remove"></span>
+                    </button>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <b>Delievery to : {{this.delieveryToPlace}}</b><br>
+                <b>By Shop : {{this.shopName}}</b>  <hr>
+                Student: {{this.studentName}} ({{this.regdNo}}) <br>
+                Amount: {{this.price}} 
+            </div>
+        </div>
+    </div>
+    {{/each}}
+</div>

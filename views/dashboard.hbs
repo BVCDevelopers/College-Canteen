@@ -51,7 +51,6 @@
     {{# each items}}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="thumbnail">
-            <img src="..." alt="Image here !!">
             <div class="caption">
                 <h4>{{this.itemName}}</h4>
                 <hr>
@@ -65,7 +64,7 @@
                 <a href="/studentOperation/book?itemName={{this.itemName}}&shopName={{this.shopName}}&price={{this.price}}"
                     class="btn btn-primary" 
                     role="button">Book Now</a>
-                <a href="#" class="btn btn-default pull-right" role="button">Deliever to room</a>
+                <a href="/studentOperation/deliever?itemName={{this.itemName}}&shopName={{this.shopName}}&price={{this.price}}" class="btn btn-default pull-right" role="button">Deliever to room</a>
             </div>
         </div>
     </div>
@@ -77,7 +76,6 @@
     {{# each shopItems}}
     <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">
         <div class="thumbnail">
-            <img src="..." alt="Image here !!">
             <div class="caption">
                 <h4>{{this.itemName}}</h4>
                 <hr>
@@ -88,7 +86,7 @@
                 <br>
                 <br>
                 <a href="/studentOperation/book?itemName={{this.itemName}}&shopName={{this.shopName}}&price={{this.price}}" class="btn btn-primary" role="button">Book Now</a>
-                <a href="#" class="btn btn-default pull-right" role="button">Deliever to room</a>
+                <a href="/studentOperation/deliever?itemName={{this.itemName}}&shopName={{this.shopName}}&price={{this.price}}" class="btn btn-default pull-right" role="button">Deliever to room</a>
             </div>
         </div>
     </div>

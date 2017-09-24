@@ -5,7 +5,7 @@
 ✘ edit items by shop ... @cancelled (9/16/2017, 9:01:09 PM)
 ✔ remove items by shop ... @done (9/16/2017, 6:01:54 PM)
 ✔ add book now ... @done (9/17/2017, 11:00:53 PM)
-☐ add delievery to room ...
+✔ add delievery to room ... @done (9/24/2017, 2:47:39 PM)
 ☐ image ko lai yeso sochhney ...
 ✔ fetch only 16 records from database ... @done (9/16/2017, 11:14:10 PM)
 ✔ back and forth login and form ... @done (9/17/2017, 9:48:27 AM)
@@ -14,6 +14,7 @@
 ☐ try to prerender in background -- try normal caching ...
 ✔ go back after login for shops ... @done (9/17/2017, 11:00:20 PM)
 ✔ logout ... @done (9/17/2017, 11:00:17 PM)
+☐ Quantity book garrda ghatauney ...
 
 
 ☐ how to test a website on an emulator ...
