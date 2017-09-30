@@ -1,18 +1,18 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const csrf = require('csurf');
+const csrf = require("csurf");
 const csrfProtection = csrf();
 
-const shopUserModel = require('../models/shopUserModel');
-const studentUserModel = require('../models/studentUserModel');
-const storeItemModel = require('../models/storeItemModel');
+const shopUserModel = require("../models/shopUserModel");
+const studentUserModel = require("../models/studentUserModel");
+const storeItemModel = require("../models/storeItemModel");
 
 // Below routes didn't need csrf soo ... mathi lekhhya ...
-router.get('/studentLogin', (req, res, next) => {
-    res.render('student/studentLogin');
+router.get("/studentLogin", (req, res, next) => {
+    res.render("student/studentLogin");
 });
 
-router.post('/studentLogin', (req, res, next) => {
+router.post("/studentLogin", (req, res, next) => {
     const regdNoIn = req.body.regdNo;
     const passwordIn = req.body.password;
     studentUserModel.findOne({ regdNo: regdNoIn, password: passwordIn })
@@ -24,7 +24,7 @@ router.post('/studentLogin', (req, res, next) => {
                             .then((shopUsers) => {
                                 req.session.regdNoIn = regdNoIn;
                                 req.session.studentName = results.name;
-                                res.render('dashboard', {
+                                res.render("dashboard", {
                                     results: results,
                                     items: storeItems.reverse(),
                                     shopUsers: shopUsers
@@ -32,7 +32,7 @@ router.post('/studentLogin', (req, res, next) => {
                             })
                     });
             } else {
-                res.render('student/studentLogin', { result: "Your username or your password is wrong. Please try again." });
+                res.render("student/studentLogin", { result: "Your username or your password is wrong. Please try again." });
             }
         });
 });
@@ -40,20 +40,20 @@ router.post('/studentLogin', (req, res, next) => {
 // Yo vannda tala ko routes haru lai protect gareko .... CSRF haleko xa soo tala lekhhya ..
 router.use(csrfProtection);
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get("/", (req, res, next) => {
     storeItemModel.find({}).limit(16)
         .then((results) => {
             shopUserModel.find({})
                 .then((shopList) => {
-                    res.render('dashboard', { items: results.reverse(), shopUsers: shopList });
+                    res.render("dashboard", { items: results.reverse(), shopUsers: shopList });
                 })
         });
 });
 
 // Sign in garrda ko le tala ko kaam garrney ...
-router.get('/shopSignIn', (req, res, next) => {
-    const errorMessage = req.flash('error');
-    res.render('shop/shopSignIn', {
+router.get("/shopSignIn", (req, res, next) => {
+    const errorMessage = req.flash("error");
+    res.render("shop/shopSignIn", {
         csrfToken: req.csrfToken(),
         errors: errorMessage,
         hasErrors: errorMessage.length > 0
@@ -61,9 +61,9 @@ router.get('/shopSignIn', (req, res, next) => {
 });
 
 // Sign up garrda tala ko le kaam garrney ..,
-router.get('/shopSignUp', (req, res, next) => {
-    const errorMessage = req.flash('error');
-    res.render('shop/shopSignUp', {
+router.get("/shopSignUp", (req, res, next) => {
+    const errorMessage = req.flash("error");
+    res.render("shop/shopSignUp", {
         csrfToken: req.csrfToken(),
         errors: errorMessage,
         hasErrors: errorMessage.length > 0

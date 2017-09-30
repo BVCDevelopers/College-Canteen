@@ -1,45 +1,45 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
 
-const shopUserModel = require('../models/shopUserModel');
-const storeItemModel = require('../models/storeItemModel');
-const studentUserModel = require('../models/studentUserModel');
-const bookedItemModel = require('../models/bookedItemModel');
-const delieverItemModel = require('../models/delieverItemModel');
+const shopUserModel = require("../models/shopUserModel");
+const storeItemModel = require("../models/storeItemModel");
+const studentUserModel = require("../models/studentUserModel");
+const bookedItemModel = require("../models/bookedItemModel");
+const delieverItemModel = require("../models/delieverItemModel");
 
-router.post('/addStudent', (req, res, next) => {
-    res.render('shopOperation/addStudent');
+router.post("/addStudent", (req, res, next) => {
+    res.render("shopOperation/addStudent");
 });
 
-router.post('/addStudentDetails', (req, res, next) => {
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0')
+router.post("/addStudentDetails", (req, res, next) => {
+    res.header("Cache-Control", "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0")
     const studentDetails = {
         regdNo: req.body.regdNo,
         name: req.body.name,
         password: req.body.password,
     };
-    studentUserModel.findOne({ 'regdNo': req.body.regdNo })
+    studentUserModel.findOne({ "regdNo": req.body.regdNo })
         .then((studentData) => {
             if (studentData) {
-                res.render('shop/shopMenu', { errorMsg: studentDetails });
+                res.render("shop/shopMenu", { errorMsg: studentDetails });
             } else {
                 studentUserModel.create(studentDetails)
                     .then((results) => {
-                        res.render('shop/shopMenu', { result: results });
+                        res.render("shop/shopMenu", { result: results });
                     });
             }
         });
 });
 
-router.post('/add', (req, res, next) => {
+router.post("/add", (req, res, next) => {
     shopUserModel.find({})
         .then((shops) => {
-            res.render('shopOperation/addItems', { shop: shops });
+            res.render("shopOperation/addItems", { shop: shops });
         });
 });
 
-router.post('/addItems', (req, res, next) => {
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+router.post("/addItems", (req, res, next) => {
+    res.header("Cache-Control", "no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0");
     const itemDetails = {
         shopName: req.body.shopName,
         itemName: req.body.itemName,
@@ -49,57 +49,57 @@ router.post('/addItems', (req, res, next) => {
     };
     storeItemModel.create(itemDetails)
         .then((results) => {
-            res.render('shop/shopMenu', { details: results });
+            res.render("shop/shopMenu", { details: results });
         });
 });
 
-router.post('/viewStudents', (req, res, next) => {
+router.post("/viewStudents", (req, res, next) => {
     studentUserModel.find({})
         .then((results) => {
-            res.render('shop/shopStudentsAccount', { results: results });
+            res.render("shop/shopStudentsAccount", { results: results });
         });
 });
 
-router.post('/displayAll', (req, res, next) => {
+router.post("/displayAll", (req, res, next) => {
     storeItemModel.find({})
         .then((results) => {
             shopUserModel.find({})
                 .then((shopItems) => {
-                    res.render('shopOperation/displayAllItems', { results: results.reverse(), shopItems: shopItems });
+                    res.render("shopOperation/displayAllItems", { results: results.reverse(), shopItems: shopItems });
                 });
         });
 });
 
-router.post('/items/:shopName', (req, res, next) => {
+router.post("/items/:shopName", (req, res, next) => {
     const shopName = req.params.shopName;
-    storeItemModel.find({ 'shopName': shopName })
+    storeItemModel.find({ "shopName": shopName })
         .then((items) => {
-            res.render('shopOperation/displayShopItems', { items: items.reverse() });
+            res.render("shopOperation/displayShopItems", { items: items.reverse() });
         });
 });
 
-router.post('/delete/:id', (req, res, next) => {
+router.post("/delete/:id", (req, res, next) => {
     const id = req.params.id;
-    storeItemModel.findByIdAndRemove({ '_id': id })
+    storeItemModel.findByIdAndRemove({ "_id": id })
         .then((results) => {
-            storeItemModel.find({ 'shopName': results.shopName })
+            storeItemModel.find({ "shopName": results.shopName })
                 .then((itemList) => {
-                    res.render('shopOperation/displayShopItems', { items: itemList.reverse(), results: results });
+                    res.render("shopOperation/displayShopItems", { items: itemList.reverse(), results: results });
                 });
         });
 });
 
 // Edit page routing ...
-router.post('/edit/:id', (req, res, next) => {
+router.post("/edit/:id", (req, res, next) => {
     const id = req.params.id;
-    storeItemModel.findOne({ '_id': id })
+    storeItemModel.findOne({ "_id": id })
         .then((results) => {
-            res.render('shopOperation/editItemForm', { results: results });
+            res.render("shopOperation/editItemForm", { results: results });
         });
 });
 
 // Edit items by shop user ...
-router.post('/editItems/:id', (req, res, next) => {
+router.post("/editItems/:id", (req, res, next) => {
     const id = req.params.id;
     const newData = {
         itemName: req.body.itemName,
@@ -107,35 +107,35 @@ router.post('/editItems/:id', (req, res, next) => {
         quantity: req.body.quantity,
         category: req.body.category
     };
-    storeItemModel.findByIdAndUpdate({ '_id': id }, newData)
+    storeItemModel.findByIdAndUpdate({ "_id": id }, newData)
         .then((results) => {
             storeItemModel.find({ shopName: results.shopName })
                 .then((dataBack) => {
-                    res.render('shopOperation/displayShopItems', { items: dataBack.reverse() });
+                    res.render("shopOperation/displayShopItems", { items: dataBack.reverse() });
                 });
         });
 });
 
 // Viewing all booked items by students ...
-router.post('/viewBookedItems', (req, res, next) => {
+router.post("/viewBookedItems", (req, res, next) => {
     bookedItemModel.find({})
         .then((results) => {
             shopUserModel.find({})
                 .then((shopList) => {
-                    res.render('shop/bookedItems', { results: results, shopList: shopList });
+                    res.render("shop/bookedItems", { results: results, shopList: shopList });
                 });
         });
 });
 
 // Categorized items in booked by shop basis ...
-router.get('/bookedByShop', (req, res, next) => {
+router.get("/bookedByShop", (req, res, next) => {
     const shopName = req.query.shopName;
     if (shopName) {
-        bookedItemModel.find({ 'shopName': shopName })
+        bookedItemModel.find({ "shopName": shopName })
             .then((results) => {
                 shopUserModel.find({})
                     .then((shopList) => {
-                        res.render('shop/bookedItems', { results: results, shopList: shopList });
+                        res.render("shop/bookedItems", { results: results, shopList: shopList });
                     });
             });
     } else {
@@ -143,38 +143,38 @@ router.get('/bookedByShop', (req, res, next) => {
             .then((results) => {
                 shopUserModel.find({})
                     .then((shopList) => {
-                        res.render('shop/bookedItems', { results: results, shopList: shopList });
+                        res.render("shop/bookedItems", { results: results, shopList: shopList });
                     });
             });
     }
 });
 
 // remove items that are booked by students (After students takes the item/s ) ...
-router.post('/removeBookedItem/:id', (req, res, next) => {
+router.post("/removeBookedItem/:id", (req, res, next) => {
     const id = req.params.id;
-    bookedItemModel.findByIdAndRemove({ '_id': id })
+    bookedItemModel.findByIdAndRemove({ "_id": id })
         .then((removedItem) => {
             bookedItemModel.find()
                 .then((results) => {
                     shopUserModel.find({})
                         .then((shopList) => {
-                            res.render('shop/bookedItems', { results: results, shopList: shopList });
+                            res.render("shop/bookedItems", { results: results, shopList: shopList });
                         });
                 });
         });
 });
 
-router.post('/viewDelieverItems', (req, res, next) => {
+router.post("/viewDelieverItems", (req, res, next) => {
     delieverItemModel.find({})
         .then((results) => {
             shopUserModel.find({})
                 .then((shopList) => {
-                    res.render('shop/delieverItems', { results: results, shopList: shopList });
+                    res.render("shop/delieverItems", { results: results, shopList: shopList });
                 });
         });
 });
 
-router.post('/removeDelieverItem/:id', (req, res, next) => {
+router.post("/removeDelieverItem/:id", (req, res, next) => {
     const id = req.params.id;
     delieverItemModel.findByIdAndRemove({ _id: id })
         .then((deletedItem) => {
@@ -182,7 +182,7 @@ router.post('/removeDelieverItem/:id', (req, res, next) => {
                 .then((results) => {
                     shopUserModel.find({})
                         .then((shopList) => {
-                            res.render('shop/delieverItems', { results: results, shopList: shopList });
+                            res.render("shop/delieverItems", { results: results, shopList: shopList });
                         });
                 });
         });
@@ -191,11 +191,11 @@ router.post('/removeDelieverItem/:id', (req, res, next) => {
 router.get("/delieveryByShop", (req, res, next) => {
     const shopName = req.query.shopName;
     if (shopName) {
-        delieverItemModel.find({ 'shopName': shopName })
+        delieverItemModel.find({ "shopName": shopName })
             .then((results) => {
                 shopUserModel.find({})
                     .then((shopList) => {
-                        res.render('shop/delieverItems', { results: results, shopList: shopList });
+                        res.render("shop/delieverItems", { results: results, shopList: shopList });
                     });
             });
     } else {
@@ -203,7 +203,7 @@ router.get("/delieveryByShop", (req, res, next) => {
             .then((results) => {
                 shopUserModel.find({})
                     .then((shopList) => {
-                        res.render('shop/delieverItems', { results: results, shopList: shopList });
+                        res.render("shop/delieverItems", { results: results, shopList: shopList });
                     });
             });
     }

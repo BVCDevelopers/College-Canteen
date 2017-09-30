@@ -1,6 +1,6 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
-const passport = require('passport');
+const mongoose = require("mongoose");
+const bcrypt = require("bcrypt-nodejs");
+const passport = require("passport");
 
 const shopUserSchema = new mongoose.Schema({
     shopName: { type: String, required: true },
@@ -15,6 +15,6 @@ shopUserSchema.methods.validPassword = function (password) {
     return bcrypt.compareSync(password, this.password);
 };
 
-const shopUserModel = mongoose.model('shopUser', shopUserSchema);
+const shopUserModel = mongoose.model("shopUser", shopUserSchema);
 
 module.exports = shopUserModel;

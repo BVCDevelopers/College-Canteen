@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const delieverItemSchema = new mongoose.Schema({
     regdNo: { type: String, required: true },
@@ -9,6 +9,6 @@ const delieverItemSchema = new mongoose.Schema({
     delieveryToPlace: { type: String, require: true }
 });
 
-const delieverItemModel = mongoose.model('delieverItem', delieverItemSchema);
+const delieverItemModel = mongoose.model("delieverItem", delieverItemSchema);
 
 module.exports = delieverItemModel;
