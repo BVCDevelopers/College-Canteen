@@ -15,17 +15,30 @@
 </div>
 <hr>
 
-{{# each shopItems}}
-    <form action="/shopOperation/items/{{this.shopName}}" method="post">
-        <button type="submit">{{this.shopName}}</button>
-    </form><br>
-{{/each}}
+<div class="row">
+    <div class="col-md-3">
+        {{# each shopItems}}
+            <form action="/shopOperation/items/{{this.shopName}}" method="post" class = "form form-inline">
+                <button type="submit" class = "btn btn-default">{{this.shopName}}</button>
+            </form><br>
+        {{/each}}
+    </div>
+    <div class="col-md-9">
+        <div style = "border-left: 1px solid #838282;">
+            <div class="list-group">
+                {{# each results}}
+                <h4>
+                    &nbsp; &nbsp; {{this.itemName}}
+                </h4>
+                <p>
+                    <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;From shop :</b> {{this.shopName}} <br>
+                    <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Price :</b> {{this.price}} <br>
+                    <b>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;Quantity :</b> {{this.quantity}} <br>
+                </p>
+                <hr>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</div>
 
-{{# each results}}
-    <b>Shop Name</b>{{this.shopName}} 
-    <b>Item Name</b>{{this.itemName}}
-    <b>Price</b>{{this.price}}
-    <b>Quantity</b>{{this.quantity}}
-    <b>Category</b>{{this.category}}
-    <hr>
-{{/each}}
