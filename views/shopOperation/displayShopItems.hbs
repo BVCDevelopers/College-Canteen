@@ -1,15 +1,17 @@
-<h2>{{items.0.shopName}}</h2>
+<center><h2>{{items.0.shopName}}</h2></center>
+<hr>
+
 {{#each items}}
-    <b>Item Name : </b>{{this.itemName}}
-    <b>Price : </b>{{this.price}}
-    <b>Quantity : </b>{{this.quantity}}
-    <b>Category : </b>{{this.category}}
     <form action="/shopOperation/edit/{{this.id}}" method="post">
-        <button type ="submit">Edit</button>
+        <button type ="submit" class = "btn btn-warning pull-right">Edit</button>
     </form>
+    <h3>{{this.itemName}} </h3>
+    <b>Price : </b>{{this.price}} <br>
     <form action="/shopOperation/delete/{{this.id}}" method="post">
-        <button type ="submit">Delete</button>
-    </form>
+        <button type ="submit" class = "btn btn-danger pull-right">Delete</button>
+    </form> 
+    <b>Quantity : </b>{{this.quantity}} <br>
+    <b>Category : </b>{{this.category}} <br>
     <hr>
 {{/each}}
 
