@@ -1,23 +1,31 @@
 {{result}}
-<div class="jumbotron">
-    <div class="row">
-        <form action="/studentLogin" method="post">
-            <div class="col-xs-12 col-sm-6 col-md-4">
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                    <input id="regNo" type="text" class="form-control" name="regdNo" placeholder="Shop Name">
-                </div>
-                <br>
-                <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" type="password" class="form-control" name="password" placeholder="Password">
-                    <input type="hidden" name="_csrf" value="{{csrfToken}}">
-                </div>
-                <br>
-                <center>
-                    <button id="loginBtn" type="submit" class="btn btn-primary">Log in</button>
-                </center>
-            </div>
-        </form>
+<div class="row">
+    <br>
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <center><h1>Student Login</h1></center> <br>
+        <div class="jumbotron">
+            <form class = "form" action="/studentLogin" method="post">
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-user"></i>
+                        </span>
+                        <input id="regNo" type="text" class="form-control input-lg" name="regdNo" placeholder="Registration Number">
+                    </div>
+                    <br>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <i class="glyphicon glyphicon-lock"></i>
+                        </span>
+                        <input id="password" type="password" class="form-control input-lg" name="password" placeholder="Password">
+                        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+                    </div>
+                    <br>
+                    <center>
+                        <button id="loginBtn" type="submit" class="btn btn-primary btn-lg">Log in</button>
+                    </center>
+            </form>
+        </div>
     </div>
+    <div class="col-md-3"></div>
 </div>

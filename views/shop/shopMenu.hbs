@@ -1,6 +1,8 @@
-<bold>
+<center>
     <h2>Shop Menu</h2>
-</bold>
+</center>
+<hr>
+
 {{#if errorMsg}}
 <div class="alert alert-danger">
     The Student named :<b>{{errorMsg.name}}</b> bearing registration number : <b>{{errorMsg.regdNo}}</b> already exists in the database. <br>
@@ -8,35 +10,33 @@
 </div>
 {{/if}}
 
-<div class="jumbotron">
-    <center>
-        <form action="/shopOperation/addStudent" method="post">
-            <button id="dense" type="submit" class="btn btn-primary">Add student</button>
-        </form>
-        <br>
-        <form action="/shopOperation/add" method="post">
-            <button id="dense" type="submit" class="btn btn-primary">Add Items</button>
-        </form>
-        <br>
-        <form action="/shopOperation/displayAll" method="post">
-            <button id="dense" type="submit" class="btn btn-primary">Display All Items</button>
-        </form>
-        <br>
-        <form action="/shopOperation/viewStudents" method="post">
-            <button id="dense" type="submit" class="btn btn-primary">View All Students Accounts</button>
-        </form>
-        <br>
-        <form action="/shopOperation/viewBookedItems" method="post">
-            <button id = "dense" type="submit" class="btn btn-primary">View Booked Items By Students</button>
-        </form>
-        <br>
-        <form action="/shopOperation/viewDelieverItems" method="post">
-            <button id = "dense" type="submit" class="btn btn-primary">View Items to deliever to Students</button>
-        </form>
-        <br><br><br>
-        <a id="dense" class="btn btn-danger" href="/shop/logout">Log out</a>
-    </center>
-</div>
+<center>
+    <form action="/shopOperation/addStudent" method="post">
+        <button id="dense" type="submit" class="btn btn-primary btn-lg">Add student</button>
+    </form>
+    <br>
+    <form action="/shopOperation/add" method="post">
+        <button id="dense" type="submit" class="btn btn-primary btn-lg">Add Items</button>
+    </form>
+    <br>
+    <form action="/shopOperation/displayAll" method="post">
+        <button id="dense" type="submit" class="btn btn-primary btn-lg">Display All Items</button>
+    </form>
+    <br>
+    <form action="/shopOperation/viewStudents" method="post">
+        <button id="dense" type="submit" class="btn btn-primary btn-lg">View All Students Accounts</button>
+    </form>
+    <br>
+    <form action="/shopOperation/viewBookedItems" method="post">
+        <button id = "dense" type="submit" class="btn btn-primary btn-lg">View Booked Items By Students</button>
+    </form>
+    <br>
+    <form action="/shopOperation/viewDelieverItems" method="post">
+        <button id = "dense" type="submit" class="btn btn-primary btn-lg">View Items to deliever to Students</button>
+    </form>
+    <br><br><br>
+    <a id="dense" class="btn btn-danger btn-lg" href="/shop/logout">Log out</a>
+</center>
 <br> {{# if result}}
 <h3>
     {{result.regdNo}}<br> {{result.name}} <br> {{result.password}}

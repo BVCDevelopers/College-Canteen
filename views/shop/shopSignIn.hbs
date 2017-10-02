@@ -1,28 +1,38 @@
 {{#if hasErrors}}
-<h1>
+<div class="alert alert-danger">
     {{#each errors}}
-    <i>{{this}}</i><br> {{/each}}
-</h1>
+        <b>{{this}}</b>
+        <br> 
+    {{/each}}
+</div>
 {{/if}}
-<div class="jumbotron">
-    <div class="row">
-        <form action="/shop/signin" method="post">
-            <div class="col-xs-12 col-sm-6 col-md-4">
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <center>
+            <h1>Shop Login</h1>
+        </center>
+        <br>
+        <div class="jumbotron">
+            <form action="/shop/signin" method="post">
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-shopping-cart"></i></span>
-                    <input id="regNo" type="text" class="form-control" name="shopName" placeholder="Shop Name">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-shopping-cart"></i>
+                    </span>
+                    <input id="regNo" type="text" class="form-control input-lg" name="shopName" placeholder="Shop Name">
                 </div>
                 <br>
                 <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                    <input id="password" type="password" class="form-control" name="password" placeholder="Password">
+                    <span class="input-group-addon">
+                        <i class="glyphicon glyphicon-lock"></i>
+                    </span>
+                    <input id="password" type="password" class="form-control input-lg" name="password" placeholder="Password">
                     <input type="hidden" name="_csrf" value="{{csrfToken}}">
                 </div>
                 <br>
-                <center>
-                    <button id="loginBtn" type="submit" class="btn btn-primary">submit</button>
-                </center>
-            </div>
-        </form>
+                <center><button id="loginBtn" type="submit" class="btn btn-primary btn-lg">submit</button></center>
+            </form>
+        </div>
     </div>
+</div>
 </div>
